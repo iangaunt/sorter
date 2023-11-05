@@ -33399,13 +33399,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 function Side(props) {
-    var sideId = props.side + "-itm";
-    return (react_1.default.createElement("div", { id: sideId },
-        react_1.default.createElement("h1", { id: sideId + "-txt" })));
+    return (react_1.default.createElement("div", { id: props.side + "-itm" },
+        react_1.default.createElement("h1", { id: props.side + "-txt" })));
 }
 function Image(props) {
-    return (react_1.default.createElement("div", { id: props.side + "-img" },
-        react_1.default.createElement("img", { src: "" })));
+    return (react_1.default.createElement("div", { id: props.side + "-i" },
+        react_1.default.createElement("img", { id: props.side + "-img", src: "" })));
 }
 function Panel() {
     return (react_1.default.createElement("nav", { className: "panel" },
@@ -33421,7 +33420,7 @@ function Panel() {
                 react_1.default.createElement("span", null, "\u2190"),
                 " Tie ",
                 react_1.default.createElement("span", null, "\u2192")),
-            react_1.default.createElement("button", { id: "sort-reset" }, "Reset"))));
+            react_1.default.createElement("button", { id: "sort-reset" }, "Undo"))));
 }
 function Sorter() {
     return (react_1.default.createElement(react_1.default.Fragment, null,
@@ -33450,11 +33449,57 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
+// Stylesheet
 __webpack_require__(/*! ../css/style.css */ "./src/css/style.css");
+// Attaches the Sorter component to the webpage.
 var client_1 = __webpack_require__(/*! react-dom/client */ "./node_modules/react-dom/client.js");
 var Sorter_1 = __importDefault(__webpack_require__(/*! ./components/Sorter */ "./src/scripts/components/Sorter.tsx"));
 (0, client_1.createRoot)(document.getElementById("main")).render((0, Sorter_1.default)());
+// Reads the items.json file and scrapes albums and images.
+var items_json_1 = __importDefault(__webpack_require__(/*! ../data/items.json */ "./src/data/items.json"));
+/**
+ * Adds the proper properties of song to the sorter elements.
+ *
+ * @param img - The `img` element to add the image to.
+ * @param txt - The `h1` element to add the title to.
+ * @param song - The song that will be added to the sorter.
+ * @param map - The map to search for the key.
+ */
+function addSong(img, txt, item, cover) {
+    img.src = cover;
+    txt.innerHTML = item;
+}
+window.onload = function () {
+    // Preload the items and map of items -> images for sorting.
+    var items = new Array();
+    var imgMap = new Map();
+    var _loop_1 = function (album) {
+        var a = items_json_1.default.groups[album];
+        a.songs.forEach(function (s) {
+            items.push(s);
+            imgMap.set(s, a.img);
+        });
+    };
+    for (var album in items_json_1.default.groups) {
+        _loop_1(album);
+    }
+    // Initialize variables to store the sorter elements. Prevents lag from repeated access.
+    var left_img = document.getElementById("left-img");
+    var left_txt = document.getElementById("left-txt");
+    var right_img = document.getElementById("right-img");
+    var right_txt = document.getElementById("right-txt");
+};
 
+
+/***/ }),
+
+/***/ "./src/data/items.json":
+/*!*****************************!*\
+  !*** ./src/data/items.json ***!
+  \*****************************/
+/***/ ((module) => {
+
+module.exports = JSON.parse('{"groups":{"Injury Reserve":{"img":"https://e.snmc.io/i/600/w/80d9b3aa9223e9773f9eb63ea221ba23/8752062/injury-reserve-injury-reserve-Cover-Art.jpg","tag":"ir","songs":["Koruna & Lime","Jawbreaker","GTFU","QWERTY Interlude","Jailbreak the Tesla","Gravy n\' Biscuits","Rap Song Tutorial","Wax On","What a Year It\'s Been","Hello?!","Best Spot in the House","New Hawaii","Three Man Weave"]},"By the Time I Get to Phoenix":{"img":"https://e.snmc.io/i/600/w/7356583ee985cc0f5e7cf4bce37c612f/9233236/injury-reserve-by-the-time-i-get-to-phoenix-Cover-Art.jpg","tag":"bttigtp","songs":["Outside","Superman That","SS San Francisco","Footwork in a Forest Fire","Ground Zero","Smoke Don\'t Clear","Top Picks For You","Wild Wild West","Postpostpartum","Knees","Bye Storm"]}}}');
 
 /***/ })
 
