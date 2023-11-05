@@ -1,0 +1,40 @@
+{
+    "groups" : {
+        "Injury Reserve": {
+            "img": "https://e.snmc.io/i/600/w/80d9b3aa9223e9773f9eb63ea221ba23/8752062/injury-reserve-injury-reserve-Cover-Art.jpg",
+            "tag": "ir",
+            "songs": [
+                "Koruna & Lime",
+                "Jawbreaker",
+                "GTFU",
+                "QWERTY Interlude",
+                "Jailbreak the Tesla",
+                "Gravy n' Biscuits",
+                "Rap Song Tutorial",
+                "Wax On",
+                "What a Year It's Been",
+                "Hello?!",
+                "Best Spot in the House",
+                "New Hawaii",
+                "Three Man Weave"
+            ]
+        },
+        "By the Time I Get to Phoenix": {
+            "img": "https://e.snmc.io/i/600/w/7356583ee985cc0f5e7cf4bce37c612f/9233236/injury-reserve-by-the-time-i-get-to-phoenix-Cover-Art.jpg",
+            "tag": "bttigtp",
+            "songs": [
+                "Outside",
+                "Superman That",
+                "SS San Francisco",
+                "Footwork in a Forest Fire",
+                "Ground Zero",
+                "Smoke Don't Clear",
+                "Top Picks For You",
+                "Wild Wild West",
+                "Postpostpartum",
+                "Knees",
+                "Bye Storm"
+            ]
+        }
+    }
+}
